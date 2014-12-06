@@ -10,25 +10,31 @@
     <meta name="screen-orientation" content="portrait" />
     <meta name="x5-fullscreen" content="true" />
     <meta name="360-fullscreen" content="true" />
-    <link rel="stylesheet" type="text/css" href="app/bower_components/normalize-css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="app/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="app/css/style.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-	<script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
 </head>
 
-<body ng-app="ngSJM">
-	<div class="main-container" ng-controller="mainCtrl" ng-cloak ng-click="handler($event)">
-        <div class="cat stay" ng-style="getCatStyle()"></div>
-		<div class="unit" ng-repeat="unit in units track by $index" ng-style="getUintStyle(unit)" ng-click="setObstacle(unit)">
-		</div>
-	</div>
-	
+<body ng-app="ngSJM" ng-controller="mainCtrl">
+   
+    <div class="main-container"  ng-cloak >
+        <div>
+            <div class="cat stay" ng-style="getCatStyle()"></div>
+            <div class="unit" ng-repeat="unit in units track by $index" ng-style="getUintStyle(unit)" ng-click="setObstacle(unit)">
+            </div>
+        </div>
+    </div>
+    <start-dialog ng-show="global.gameState==='start'" ng-click="startGame()">
+    </start-dialog>
+    <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()" result="global.gameResult">
+    </end-dialog>
 </body>
 
 </html>

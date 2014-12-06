@@ -1,13 +1,20 @@
+html, body{
+  height:100%;
+}
+
 body {
     background-image: url(../images/bg.jpg);
     background-size: 100% 100%;
+    width: 100%;
 }
 .main-container {
     position: absolute;
     bottom: 40px;
     width: 100%;
+    height: 100%;
 }
 .main-container .unit {
+    width: 10%;
     position: absolute;
     background-size: 95% 95%;
     background-position: center;
@@ -15,8 +22,69 @@ body {
 }
 .main-container .cat {
     position: absolute;
+    z-index: 900;
+}
+
+.dialog{
+    position: absolute;
+    display: -webkit-flex;
+    width: 100%;
+    height: 100%;
     z-index: 1000;
 }
+
+.start-dialog{
+    width: 100%;
+    background:url('/images/btn_start.png') center center no-repeat;
+    background-size:contain;
+}
+
+.start-dialog img{
+    line-height: 100%;
+    width: 90%;
+}
+
+.end-dialog{
+    width: 90%;
+    margin:auto;
+}
+
+
+
+.end-dialog .result{
+    box-sizing:border-box;
+    height: 250px;
+    background-size:70%,100%;
+    background-repeat:no-repeat;
+    background-position:center 11em,center center;
+    text-align: center;
+    font-size: 1.5em;
+    padding-top: 8em;
+    padding-bottom: 6em;
+    width:100%;
+    border: 1px solid red;
+}
+
+@media (min-width: 600px) {
+  .end-dialog .result{
+
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 250px) {
+  .end-dialog .result{
+    padding-top: 5em;
+    padding-bottom: 4.5em;
+    background-position:center 8em,center center;
+    font-size: 0.9em;
+  }
+}
+
+.end-dialog .action{
+
+}
+
 .stay {
     -webkit-animation-name: stay;
     -webkit-animation-duration: 0.8s;

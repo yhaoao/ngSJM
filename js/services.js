@@ -248,6 +248,7 @@ angular.module('ngSJM.services', [])
 					unit.isObstacle = false;
 				}
 			});
+			units[rowCount * Math.floor(rowCount / 2) + Math.floor(colCount / 2)].isObstacle = false;
 		};
 
 		return {
