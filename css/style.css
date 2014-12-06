@@ -1,0 +1,37 @@
+body {
+    background-image: url(../images/bg.jpg);
+    background-size: 100% 100%;
+}
+.main-container {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+}
+.main-container .unit {
+    position: absolute;
+    background-size: 95% 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.main-container .cat {
+    position: absolute;
+    z-index: 1000;
+}
+.stay {
+    -webkit-animation-name: stay;
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: steps(15);
+    background: url(../images/stay.png);
+    width: 60px;
+    height: 93px;
+}
+.weizhu {
+    -webkit-animation-name: weizhu;
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: steps(15);
+    background: url(../images/weizhu.png);
+    width: 64px;
+    height: 91px;
+}

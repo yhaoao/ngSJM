@@ -1,0 +1,70 @@
+@-webkit-keyframes stay
+
+{
+    0% {
+        background-position: 0px -1px;
+        -webkit-animation-timing-function :steps(3);
+    }
+    20% {
+        background-position: -183px -1px;
+        -webkit-animation-timing-function :steps(1);
+    }
+    26.7%{
+    	background-position: 0px -94px;
+    	-webkit-animation-timing-function :steps(3);
+    }
+    46.7% {
+    	background-position: -183px -94px;
+    	-webkit-animation-timing-function :steps(1);
+    }
+    53.3% {
+    	background-position: 0px -187px;
+    	-webkit-animation-timing-function :steps(3);
+    }
+    73.3% {
+    	background-position: -183px -187px;
+    	-webkit-animation-timing-function :steps(1);
+    }
+    80% {
+    	background-position: 0px -280px;
+    	-webkit-animation-timing-function :steps(3);
+    }
+    100% {
+    	background-position: -183px -280px;
+    }
+}
+
+@-webkit-keyframes weizhu
+{
+    0% {
+        background-position: 0px 0px;
+        -webkit-animation-timing-function :steps(3);
+    }
+    20% {
+        background-position: -192px 0px;
+        -webkit-animation-timing-function :steps(1);
+    }
+    26.7%{
+    	background-position: 0px -91px;
+    	-webkit-animation-timing-function :steps(3);
+    }
+    46.7% {
+    	background-position: -192px -91px;
+    	-webkit-animation-timing-function :steps(1);
+    }
+    53.3% {
+    	background-position: 0px -182px;
+    	-webkit-animation-timing-function :steps(3);
+    }
+    73.3% {
+    	background-position: -192px -182px;
+    	-webkit-animation-timing-function :steps(1);
+    }
+    80% {
+    	background-position: 0px -273px;
+    	-webkit-animation-timing-function :steps(3);
+    }
+    100% {
+    	background-position: -192px -273px;
+    }
+}
