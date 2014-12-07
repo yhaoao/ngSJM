@@ -5,7 +5,6 @@ angular.module('ngSJM.directives', [])
         restrict: 'E',
         template: 	'<div class="dialog">'+
         				'<div class="start-dialog">'+
-        					// '<img src="images/btn_start.png"/>'+
         				'</div>'+
         			'</div>',
         replace:true,

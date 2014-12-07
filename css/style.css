@@ -1,22 +1,26 @@
 html, body{
   height:100%;
+  width: 100%;
 }
 
-body {
+.game{
     background-image: url(../images/bg.jpg);
     background-size: 100% 100%;
-    width: 100%;
+    width: 500px;
+    height: 100%;
+    margin:0 auto;
+    position: relative;
 }
 .main-container {
     position: absolute;
     bottom: 40px;
-    width: 100%;
-    height: 100%;
+    width: 500px;
+    height: 500px;
 }
 .main-container .unit {
-    width: 10%;
+    width: 50px;
     position: absolute;
-    background-size: 95% 95%;
+    background-size: 47px 47px;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -27,62 +31,53 @@ body {
 
 .dialog{
     position: absolute;
-    display: -webkit-flex;
-    width: 100%;
+    width: 500px;
     height: 100%;
     z-index: 1000;
 }
 
 .start-dialog{
-    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height:588px;
+    margin: auto;
     background:url('/images/btn_start.png') center center no-repeat;
-    background-size:contain;
-}
-
-.start-dialog img{
-    line-height: 100%;
-    width: 90%;
+    background-size:400px 588px;
 }
 
 .end-dialog{
-    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 588px;
     margin:auto;
+    text-align: center;
 }
 
 
 
 .end-dialog .result{
     box-sizing:border-box;
-    height: 250px;
-    background-size:70%,100%;
+    height: 390px;
+    background-size:280px 118px,400px 322px;
     background-repeat:no-repeat;
-    background-position:center 11em,center center;
+    background-position:center 280px,center center;
     text-align: center;
-    font-size: 1.5em;
-    padding-top: 8em;
-    padding-bottom: 6em;
-    width:100%;
-    border: 1px solid red;
-}
-
-@media (min-width: 600px) {
-  .end-dialog .result{
-
-    font-size: 2.5em;
-  }
-}
-
-@media (max-width: 250px) {
-  .end-dialog .result{
-    padding-top: 5em;
-    padding-bottom: 4.5em;
-    background-position:center 8em,center center;
-    font-size: 0.9em;
-  }
+    font-size: 26px;
+    padding-top: 220px;
+    padding-bottom: 100px;
+    width:400px;
 }
 
 .end-dialog .action{
-
+    display: inline-block;
+    width: 185px;
+    height: 98px;
+    background-size: 185px 98px;
+    word-spacing:10px;
 }
 
 .stay {

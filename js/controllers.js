@@ -5,8 +5,8 @@ angular.module('ngSJM.controllers', []).controller('mainCtrl', function($scope, 
 			return !unit.isObstacle;
 		});
 	};
-	
-	var uintWidth = parseInt($window.innerWidth / 10);
+
+	var uintWidth = parseInt( 500/ 10);
 
 
 	var randomJump = function(row, col) {

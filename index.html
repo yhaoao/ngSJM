@@ -23,18 +23,21 @@
 </head>
 
 <body ng-app="ngSJM" ng-controller="mainCtrl">
-   
-    <div class="main-container"  ng-cloak >
-        <div>
-            <div class="cat stay" ng-style="getCatStyle()"></div>
-            <div class="unit" ng-repeat="unit in units track by $index" ng-style="getUintStyle(unit)" ng-click="setObstacle(unit)">
+    <div class="game">
+        <div class="main-container" ng-cloak>
+            <div>
+                <div class="cat stay" ng-style="getCatStyle()"></div>
+                <div class="unit" ng-repeat="unit in units track by $index" ng-style="getUintStyle(unit)" ng-click="setObstacle(unit)">
+                </div>
             </div>
         </div>
+        <start-dialog ng-show="global.gameState==='start'" ng-click="startGame()">
+        </start-dialog>
+        <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()" result="global.gameResult">
+        </end-dialog>
     </div>
-    <start-dialog ng-show="global.gameState==='start'" ng-click="startGame()">
-    </start-dialog>
-    <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()" result="global.gameResult">
-    </end-dialog>
+
+
 </body>
 
 </html>
