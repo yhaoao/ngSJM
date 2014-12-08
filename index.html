@@ -23,17 +23,24 @@
 </head>
 
 <body ng-app="ngSJM" ng-controller="mainCtrl">
-    <div class="game">
-        <div class="main-container" ng-cloak>
-            <div>
-                <div class="cat stay" ng-style="getCatStyle()"></div>
-                <div class="unit" ng-repeat="unit in units track by $index" ng-style="getUintStyle(unit)" ng-click="setObstacle(unit)">
+    <div class="game scale-x">
+        <div class="main-container scale-y" ng-cloak ng-click="gameHandler($event)">
+            <div class="grid">
+                <div class="unit" ng-repeat="unit in units track by $index" ng-mouseover="enter(unit)"
+                ng-style="getUintStyle(unit)" ng-click="setObstacle(unit)">
                 </div>
+            </div>
+            <div class="cat" ng-class="cat.state" ng-style="getCatStyle()"></div>
+
+        </div>
+        <div class="dialog" ng-show="global.gameState==='loading'">
+            <div class="loading-dialog">
+                <strong class="loading-process">游戏加载中。。。{{global.loadingProcess}}</strong>
             </div>
         </div>
         <start-dialog ng-show="global.gameState==='start'" ng-click="startGame()">
         </start-dialog>
-        <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()" result="global.gameResult">
+        <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()"  result="global.gameResult">
         </end-dialog>
     </div>
 

@@ -1,12 +1,18 @@
-<div class="dialog">
+<div class="dialog scale-y">
     <div class="end-dialog">
         <div class="result" ng-style="style">
-        	你没有抓住神！经！猫！</br>
-        	<strong>精神病院长又发神经病了！</strong>
-        </div>
+            <div ng-show="result.state==='fail'">
+                你没有抓住神！经！猫！</br>
+                <strong>精神病院长又发神经病了！</strong>
+            </div>
+            <div style="color:red" ng-show="result.state==='success'">
+            	您用{{result.steps}}步抓住了神经猫</br>
+            	<strong>获得称号：{{getTitle()}}</strong>
+            </div>
 
-        	<a class="action" style="background-image:url(images/shareBTN.png);"></a>
-        	<a class="action" style="background-image:url(images/replay.png);"></a>
+        </div>
+        <a class="action" style="background-image:url(images/shareBTN.png);"></a>
+        <a class="action" style="background-image:url(images/replay.png);"></a>
 
     </div>
 </div>

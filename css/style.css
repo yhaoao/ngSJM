@@ -1,14 +1,13 @@
-html, body{
-  height:100%;
-  width: 100%;
+html, body {
+    height: 100%;
+    width: 100%;
 }
-
-.game{
+.game {
     background-image: url(../images/bg.jpg);
     background-size: 100% 100%;
     width: 500px;
     height: 100%;
-    margin:0 auto;
+    margin: 0 auto;
     position: relative;
 }
 .main-container {
@@ -28,64 +27,78 @@ html, body{
     position: absolute;
     z-index: 900;
 }
-
-.dialog{
+.dialog {
     position: absolute;
     width: 500px;
     height: 100%;
     z-index: 1000;
 }
 
-.start-dialog{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height:588px;
-    margin: auto;
-    background:url('/images/btn_start.png') center center no-repeat;
-    background-size:400px 588px;
+.loading-dialog{
+    background:black;
+    padding:auto;
+    color:white;
+    
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: table;
 }
 
-.end-dialog{
+.loading-process{
+    font-size:25px;
+    vertical-align:middle;
+    display: table-cell;
+}
+
+.start-dialog {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 400px;
     height: 588px;
-    margin:auto;
-    text-align: center;
+    margin: auto;
+    background: url('/images/btn_start.png') center center no-repeat;
+    background-size: 400px 588px;
+    -webkit-transform: translate(-50%, -50%);
+    -webkit-transform-origin: center center;
 }
-
-
-
-.end-dialog .result{
-    box-sizing:border-box;
+.end-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 588px;
+    margin: auto;
+    text-align: center;
+    -webkit-transform: translate(-50%, -50%);
+    -webkit-transform-origin: center center;
+}
+.end-dialog .result {
+    box-sizing: border-box;
     height: 390px;
-    background-size:280px 118px,400px 322px;
-    background-repeat:no-repeat;
-    background-position:center 280px,center center;
+    background-size: 280px 118px, 400px 322px;
+    background-repeat: no-repeat;
+    background-position: center 280px, center center;
     text-align: center;
     font-size: 26px;
     padding-top: 220px;
     padding-bottom: 100px;
-    width:400px;
+    width: 400px;
 }
-
-.end-dialog .action{
+.end-dialog .action {
     display: inline-block;
     width: 185px;
     height: 98px;
     background-size: 185px 98px;
-    word-spacing:10px;
+    word-spacing: 10px;
 }
-
 .stay {
     -webkit-animation-name: stay;
     -webkit-animation-duration: 0.8s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: steps(15);
-    background: url(../images/stay.png);
+    background: url('/images/stay.png');
     width: 60px;
     height: 93px;
 }
@@ -94,7 +107,7 @@ html, body{
     -webkit-animation-duration: 0.8s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: steps(15);
-    background: url(../images/weizhu.png);
+    background: url('/images/weizhu.png');
     width: 64px;
     height: 91px;
 }

@@ -88,7 +88,6 @@ angular.module('ngSJM.services', [])
 					path.unshift(pathNode);
 				}
 			}
-			console.log(path);
 			return path;
 		};
 		return {
@@ -98,23 +97,26 @@ angular.module('ngSJM.services', [])
 		};
 	})
 	.factory('Cat', function() {
-		var reset=function(){
-			this.row=4;
-			this.col=4;
-			this.isFree=true;
+		var reset = function() {
+			this.row = 4;
+			this.col = 4;
+			this.isFree = true;
+			this.state = 'stay';
 		}
 
 		return {
 			isFree: true,
 			row: 4,
 			col: 4,
-			reset:reset
+			state: 'stay',
+			reset: reset
 		}
 
 	})
 	.factory('Grid', function(UnitProto, GraphProto) {
 
-		var obstacleProb = 0.12;
+		//var obstacleProb = 0.12;
+		var obstacleProb = 0.3;
 		var rowCount = 9;
 		var colCount = 9;
 		var unitCount = rowCount * colCount;
@@ -159,7 +161,7 @@ angular.module('ngSJM.services', [])
 
 		};
 
-		var isOnEdge = function(row,col) {
+		var isOnEdge = function(row, col) {
 			return row === 0 || row === (rowCount - 1) || col === 0 || col === (colCount - 1);
 		};
 
@@ -201,7 +203,7 @@ angular.module('ngSJM.services', [])
 
 		};
 
-		var getNextStep = function(unit) {
+		var getNextStep = function(row, col) {
 			var visualNodeValue = unitCount;
 
 			var graph = Object.create(GraphProto).init(unitCount + 1);
@@ -210,7 +212,9 @@ angular.module('ngSJM.services', [])
 			};
 			_.each(units, function(unit) {
 				if (unit.isObstacle) {
-					return;
+					if (unit.row !== row || unit.col !== col) {
+						return;
+					}
 				}
 				_.each(getAdjUints(unit.row, unit.col), function(adjUnit) {
 					if (adjUnit.isObstacle) {
@@ -219,18 +223,18 @@ angular.module('ngSJM.services', [])
 
 					graph.connect(unitToValue(unit), unitToValue(adjUnit));
 
-					if (isOnEdge(unit.row,unit.col)) {
+					if (isOnEdge(unit.row, unit.col)) {
 						graph.connect(unitToValue(unit), visualNodeValue);
 					}
 				});
 			});
-			var path = graph.shortestPath(unitToValue(unit), visualNodeValue);
+			var path = graph.shortestPath(row * colCount + col, visualNodeValue);
 
 			if (path) {
 				var nextStepValue = path[1];
 				return {
-					row:Math.floor(nextStepValue/colCount),
-					col:nextStepValue%colCount
+					row: Math.floor(nextStepValue / colCount),
+					col: nextStepValue % colCount
 				}
 			} else {
 				return null;
@@ -250,14 +254,104 @@ angular.module('ngSJM.services', [])
 			});
 			units[rowCount * Math.floor(rowCount / 2) + Math.floor(colCount / 2)].isObstacle = false;
 		};
+		var getRandomStep = function(row, col) {
+
+			var unit = _.find(getAdjUints(row, col), function(unit) {
+				return !unit.isObstacle;
+			});
+
+			return unit ? {
+				row: unit.row,
+				col: unit.col
+			} : null;
+		}
+
 
 		return {
 			units: units,
 			isInGrid: isInGrid,
 			reset: reset,
 			getNextStep: getNextStep,
-			getAdjUints:getAdjUints,
-			isOnEdge:isOnEdge
+			getAdjUints: getAdjUints,
+			isOnEdge: isOnEdge,
+			getRandomStep: getRandomStep
 
 		};
+	}).factory('Message', function() {
+		var cache = {};
+		var subscribe = function(topic, callback) {
+			if (!cache[topic]) {
+				cache[topic] = [];
+			}
+			cache[topic].push(callback);
+			return [topic, callback];
+		};
+		var publish = function(topic, args) {
+			cache[topic] && angular.forEach(cache[topic],
+				function(callback) {
+					callback.apply(null, args || []);
+				});
+		};
+		var unsubscribe = function(handle) {
+			var t = handle[0];
+			if (cache[t]) {
+				for (var x = 0; x < cache[t].length; x++) {
+					if (cache[t][x] === handle[1]) {
+						cache[t].splice(x, 1);
+					}
+				}
+			}
+		};
+		var service = {
+			publish: publish,
+			subscribe: subscribe,
+			unsubscribe: unsubscribe
+		};
+		return service;
+	}).factory('ImgLoader', function(Message,$q) {
+		var images = [
+			'/images/bg.jpg',
+			'/images/btn_start.png',
+			'/images/fail.png',
+			'/images/mao2.png',
+			'/images/pot1.png',
+			'/images/pot2.png',
+			'/images/replay.png',
+			'/images/shareBTN.png',
+			'/images/stay.png',
+			'/images/success.png',
+			'/images/weizhu.png'
+		];
+
+
+		var loadImg = function() {
+
+			var notify = function(src) {
+				result.notify(src);
+			}
+
+            var deferred = $q.defer();
+            var imagesLen=images.length;
+            var loadedImagesLen=0;
+
+			_.each(images, function(src) {
+				var img = new Image();
+				img.src = src;
+				img.addEventListener('load', function() {
+                    loadedImagesLen+=1;
+					if(loadedImagesLen===imagesLen){
+                        deferred.resolve();
+                        
+                    }else{
+                        deferred.notify(loadedImagesLen+'/'+imagesLen);
+                    }
+				});
+			});
+
+			return deferred.promise;
+		}
+
+		return {
+			loadImg: loadImg
+		}
 	});
