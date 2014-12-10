@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
     width: 100%;
+    position: relative;
 }
 .game {
     background-image: url(../images/bg.jpg);
@@ -8,7 +9,7 @@ html, body {
     width: 500px;
     height: 100%;
     margin: 0 auto;
-    position: relative;
+    
 }
 .main-container {
     position: absolute;
@@ -28,17 +29,19 @@ html, body {
     z-index: 900;
 }
 .dialog {
+    top:0px;
     position: absolute;
-    width: 500px;
+    width: 100%;
     height: 100%;
     z-index: 1000;
 }
 
 .loading-dialog{
+    position: absolute;
     background:black;
     padding:auto;
     color:white;
-    
+    z-index: 1200;
     text-align: center;
     width: 100%;
     height: 100%;

@@ -20,22 +20,25 @@
     <script type="text/javascript" src="js/services.js"></script>
     <script type="text/javascript" src="js/controllers.js"></script>
     <script type="text/javascript" src="js/directives.js"></script>
+    </script>
 </head>
 
 <body ng-app="ngSJM" ng-controller="MainController">
     <div class="game scale-x">
         <div class="main-container scale-y" ng-cloak ng-click="gameHandler($event)">
             <div class="grid">
-                <div class="unit" ng-repeat="unit in units track by $index" ng-mouseover="enter(unit)"
-                ng-style="getUintStyle(unit)">
+                <div class="unit" ng-repeat="unit in units track by $index" ng-mouseover="enter(unit)" ng-style="getUintStyle(unit)">
                 </div>
             </div>
             <div class="cat" ng-class="cat.state" ng-style="getCatStyle()"></div>
         </div>
-        <load-dialog ng-show="global.gameState==='loading'" process="global.loadingProcess"></load-dialog>
+
         <start-dialog ng-show="global.gameState==='start'" ng-click="startGame()"></start-dialog>
-        <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()"  result="global.gameResult"></end-dialog>
+        <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()" result="global.gameResult"></end-dialog>
+        
     </div>
+
+    <load-dialog ng-show="global.gameState==='loading'" process="global.loadingProcess"></load-dialog>
 </body>
 
 </html>

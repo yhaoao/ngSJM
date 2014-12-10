@@ -1,4 +1,4 @@
-<div class="dialog scale-y">
+<div class="dialog scale-y-center">
     <div class="end-dialog">
         <div class="result" ng-style="style">
             <div ng-show="result.state==='fail'">
@@ -6,8 +6,8 @@
                 <strong>精神病院长又发神经病了！</strong>
             </div>
             <div style="color:red" ng-show="result.state==='success'">
-            	您用{{result.steps}}步抓住了神经猫</br>
-            	<strong>获得称号：{{getTitle()}}</strong>
+                您用{{result.steps}}步抓住了神经猫</br>
+                <strong>获得称号：{{getTitle()}}</strong>
             </div>
 
         </div>

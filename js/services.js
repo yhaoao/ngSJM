@@ -116,7 +116,7 @@ angular.module('ngSJM.services', [])
     .factory('Grid', function(UnitProto, GraphProto) {
 
         //var obstacleProb = 0.12;
-        var obstacleProb = 0.3;
+        var obstacleProb = 0;
         var rowCount = 9;
         var colCount = 9;
         var unitCount = rowCount * colCount;
@@ -276,7 +276,7 @@ angular.module('ngSJM.services', [])
             getAdjUints: getAdjUints,
             isOnEdge: isOnEdge,
             getRandomStep: getRandomStep,
-            getUint:getUint
+            getUint: getUint
 
         };
     }).factory('Env', function($window, $timeout) {
@@ -286,6 +286,7 @@ angular.module('ngSJM.services', [])
             var styleElm = document.createElement('style');
             styleElm.innerHTML =
                 '.scale-x{ -webkit-transform: scale(' + ratio + ', 1);-webkit-transform-origin: bottom left;}' +
+                '.scale-y-center{ -webkit-transform: scale(1, ' + ratio + ');-webkit-transform-origin: center center;}' +
                 '.scale-y{ -webkit-transform: scale(1, ' + ratio + ');-webkit-transform-origin: bottom;}';
             $window.document.querySelector('head').appendChild(styleElm);
             this.ratio = ratio;
