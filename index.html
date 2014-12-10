@@ -32,19 +32,10 @@
             </div>
             <div class="cat" ng-class="cat.state" ng-style="getCatStyle()"></div>
         </div>
-        <!-- <div class="dialog" ng-show="global.gameState==='loading'">
-            <div class="loading-dialog">
-                <strong class="loading-process">游戏加载中。。。{{global.loadingProcess}}</strong>
-            </div>
-        </div> -->
         <load-dialog ng-show="global.gameState==='loading'" process="global.loadingProcess"></load-dialog>
-        <start-dialog ng-show="global.gameState==='start'" ng-click="startGame()">
-        </start-dialog>
-        <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()"  result="global.gameResult">
-        </end-dialog>
+        <start-dialog ng-show="global.gameState==='start'" ng-click="startGame()"></start-dialog>
+        <end-dialog ng-show="global.gameState==='end'" ng-click="startGame()"  result="global.gameResult"></end-dialog>
     </div>
-
-
 </body>
 
 </html>
