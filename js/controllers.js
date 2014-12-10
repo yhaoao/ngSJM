@@ -1,33 +1,10 @@
-angular.module('ngSJM.controllers', []).controller('mainCtrl', function($scope, $window, Grid, Cat, ImgLoader) {
+angular.module('ngSJM.controllers', []).controller('MainController', function($scope, $window, Grid, Cat, ImgLoader, Env) {
     var uintWidth = 50;
     var steps = 0;
+    var evenMargin = uintWidth / 4;
+    var oddMargin = (uintWidth * 3) / 4;
 
-    $scope.units = Grid.units;
-    $scope.cat = Cat;
-    $scope.global = {
-        gameState: 'loading'
-    };
-
-    ImgLoader.loadImg().then(
-        function() {
-            $scope.global.gameState='start';
-        },
-        function() {
-            alert('网络错误');
-        },
-        function(process) {
-            $scope.global.loadingProcess=process;
-        }
-    );
-
-    $scope.startGame = function() {
-        $scope.global.gameState = 'running';
-        steps = 0;
-        Cat.reset();
-        Grid.reset();
-    }
-
-    $scope.setObstacle = function(unit) {
+    var setObstacle = function(unit) {
         if (unit.isObstacle) {
             return;
         }
@@ -62,11 +39,52 @@ angular.module('ngSJM.controllers', []).controller('mainCtrl', function($scope, 
         return;
     };
 
+    $scope.units = Grid.units;
+    $scope.cat = Cat;
+    $scope.global = {
+        gameState: 'loading'
+    };
+
+    ImgLoader.loadImg().then(
+        function() {
+            $scope.global.gameState = 'start';
+        },
+        function() {
+            alert('网络错误,请检查网络');
+        },
+        function(process) {
+            $scope.global.loadingProcess = process;
+        }
+    );
+
+    $scope.startGame = function() {
+        $scope.global.gameState = 'running';
+        steps = 0;
+        Cat.reset();
+        Grid.reset();
+    };
+
+    $scope.gameHandler = function(event) {
+        var row, col;
+        row = Math.floor((event.y - Env.main.getBoundingClientRect().top) / (uintWidth * Env.ratio));
+        if (row % 2 === 1) {
+            col = Math.floor((event.x - Env.main.getBoundingClientRect().left - oddMargin * Env.ratio) / (uintWidth * Env.ratio));
+        } else {
+            col = Math.floor((event.x - Env.main.getBoundingClientRect().left - evenMargin * Env.ratio) / (uintWidth * Env.ratio));
+        }
+        var unit = Grid.getUint(row, col);
+        if (unit) {
+            setObstacle(unit);
+        }
+    };
+
     $scope.getUintStyle = function(unit) {
-        var bottom = (8 - unit.row) * uintWidth;
-        var left = uintWidth / 4 + unit.col * uintWidth;
-        if (unit.row % 2 == 1) {
-            left += uintWidth / 2;
+        var bottom = (9 - unit.row) * uintWidth;
+        var left = unit.col * uintWidth;
+        if (unit.row % 2 === 1) {
+            left += oddMargin;
+        } else {
+            left += evenMargin;
         }
 
         var backgroundImage = 'url(/images/pot1.png)';
@@ -85,12 +103,13 @@ angular.module('ngSJM.controllers', []).controller('mainCtrl', function($scope, 
     };
 
     $scope.getCatStyle = function() {
-        var bottom = (8 - Cat.row) * uintWidth + uintWidth / 3;
-        var left = uintWidth / 4 + Cat.col * uintWidth - (60 - uintWidth) / 2;
+        var bottom = (9 - Cat.row) * uintWidth + uintWidth / 3;
+        var left = Cat.col * uintWidth - (60 - uintWidth) / 2;
         if (Cat.row % 2 == 1) {
-            left += uintWidth / 2;
+            left += oddMargin;
+        } else {
+            left += evenMargin;
         }
-
         return {
             bottom: bottom,
             left: left,

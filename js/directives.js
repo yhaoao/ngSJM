@@ -9,12 +9,23 @@ angular.module('ngSJM.directives', [])
             link: function($scope, $element, $attr) {}
         }
     })
+    .directive('loadDialog',function(){
+        return {
+            restrict: 'E',
+            templateUrl: 'tempelate/load_dialog.html',
+            replace: true,
+            scope: {
+                process: '='
+            },
+            link: function($scope, $element, $attr) {}
+        }
+    })
     .directive('endDialog', function() {
 
         return {
             restrict: 'E',
-            transclude: true,
             templateUrl: 'tempelate/end_dialog.html',
+            replace: true,
             scope: {
                 result: '='
             },
